@@ -1,0 +1,11 @@
+name: Debug some stuff
+on:
+  workflow_dispatch:
+jobs:
+  testit: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump the location 
+        run: |
+          ls -al $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
