@@ -1,0 +1,24 @@
+name: Matrix Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  set-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.matrix.outputs.dirs }}
+    steps:
+      - id: matrix
+        run: |
+          echo 'dirs={"include":[{"dir":"virthost"},{"dir":"workstation"}]}' >> $GITHUB_OUTPUT
+
+  run-tasks:
+    needs: set-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include: ${{ fromJson(needs.set-matrix.outputs.dirs).include }}
+    steps:
+      - run: echo "DIR: ${{ matrix.dir }}"
+      - run: echo "Full matrix: ${{ toJson(matrix) }}"
