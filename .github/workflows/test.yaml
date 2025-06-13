@@ -9,3 +9,13 @@ jobs:
         run: |
           ls -al $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT
+
+          echo 'one=2' >> $GITHUB_OUTPUT
+
+      - name: step 2
+        run: |
+          ls -al $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
+
+          echo ${{ one }}
+
