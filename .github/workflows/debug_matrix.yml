@@ -20,5 +20,7 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.set-matrix.outputs.dirs).include }}
     steps:
-      - run: echo "DIR: ${{ matrix.dir }}"
-      - run: echo "Full matrix: ${{ toJson(matrix) }}"
+      - run: |
+          echo "DIR: ${{ matrix.dir }}"
+      - run: |
+          echo "Full matrix: ${{ toJson(matrix) }}"
